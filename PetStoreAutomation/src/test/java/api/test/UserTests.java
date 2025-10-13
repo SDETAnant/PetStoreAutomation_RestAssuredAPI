@@ -1,0 +1,61 @@
+package api.test;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import com.github.javafaker.Faker;
+
+import api.endpoints.UserEndPoints;
+import api.payloads.User;
+import io.restassured.response.Response;
+
+public class UserTests {
+   
+	Faker faker;
+	
+	User userPayload;
+	@BeforeClass
+	public void setupData()
+	{
+		faker=new Faker();
+		userPayload=new User();
+		userPayload.setId(faker.idNumber().hashCode());
+		userPayload.setFirstName(faker.name().firstName());
+		userPayload.setEmail(faker.internet().safeEmailAddress());
+		userPayload.setLastName(faker.name().lastName());
+		userPayload.setPhone(faker.phoneNumber().cellPhone());
+	}
+	@Test(priority=1)
+	public void testPostUser()
+	{
+		Response response =UserEndPoints.createUser(userPayload);
+		response.then().log().all();
+		Assert.assertEquals(response.getStatusCode(), 404);               //17.44
+	}
+	
+	@Test(priority=2)
+	public void testgetUserByName()
+	{
+		Response response =UserEndPoints.getUser(this.userPayload.getUsername());
+		response.then().log().all();
+		//response.stat
+		Assert.assertEquals(response.getStatusCode(), 200);
+	}
+	@Test(priority=2)
+	public void testupdateUserByName()
+	{
+	
+		userPayload.setFirstName(faker.name().firstName());
+		userPayload.setEmail(faker.internet().safeEmailAddress());
+		userPayload.setLastName(faker.name().lastName());
+		Response response=UserEndPoints.updateUser(this.userPayload.getUsername(), userPayload);
+		response.then().log().body();
+
+		Assert.assertEquals(response.getStatusCode(), 200);
+
+		//Checking data after update
+		Response responseAfterupdate = UserEndPoints.getUser(this.userPayload.getUsername());
+		Assert.assertEquals(response.getStatusCode(), 200);
+   }
+}

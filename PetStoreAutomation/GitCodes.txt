@@ -1,0 +1,129 @@
+
+
+
+    For pushing codes into github
+First open the project location in C drive
+     
+      Open gitbash
+     ⇒  $  git init        ⇒ this will create local empty repository 
+       
+      
+     ⇒  If you are first time using git commands you need to execute these 2 commands later u dont need  
+       to  execute. Only first time while using git commands or pushing codes first time 
+         
+         
+      ⇒   $  git config --global  user.name “SDETAnant”
+      ⇒    $  git config --global  user.email “anantdokde99qa” 
+      = ===================
+⇒ Next things we need to ensure our files are added to the staging environment from  there  we have to commit our code to local repository again there we have to push our code to the remote repository
+⇒Before adding our files to the staging we have to check the status like is there any files to add or not
+   We can verify this by using status command 
+  ⇒ $  git status 
+
+If you see some red colour file after git status command then you need to add this untracked file to staging or indexing  area. Staging is aslo called as indexing area
+Whatever file in the working directory we can call them as untracked file  which are represented with red colour. Red colour files means these are only in working directory these are not committed yet to staging area
+
+To commit these untracked files 
+If we want to commit all files and folders everything so we can execute 
+If you are first time committing codes then you must need to add files
+⇒  $  git add -A
+
+ If you want to add only specific files then 
+⇒ $  git add filename.java
+
+If you want to add multiple files with same extensions then you can use regular expression
+Means here whichever file having .java extension will be added 
+⇒  $  git add  *.java
+
+If you want to add specific folders only
+⇒  $  git add foldername 
+
+
+Once you add all files to staging area then check the status of files with git status command 
+And you will see the green colour files if files are added to staging
+
+
+Now we need to commit our files from staging area to git repository which is a local repository
+⇒  $  clear   – — –   -to clear the previous commands 
+
+⇒ $ git commit -m “this is my first commit”    – -actually we write message here what changes we are done in our project or what new changes you are committing  
+This white colour file represents the committed files to the local repo
+
+===== =
+Now before pushing files to github or remote repository we need to create an empty remote repository then we will be able to push it.
+When we create empty local remote repository we will get the one link we will establish connection between local and remote repository 
+https://github.com/SDETAnant/PetStoreAutomation.git
+ ==========
+Now push the codes to remorse repository 
+If you are committing code first time we need to crate connection between local and remote repository by this command this we will execute only first time , later second time is not required
+⇒ $ Git remote add origin  “https://github.com/SDETAnant/PetStoreAutomation.git” 
+====== ======
+ Now to push codes from local to remorse repo
+⇒ $ git push -u origin master 
+
+======= ===========
+or create a new repository on the command line
+echo "# PetStoreAutomation" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/SDETAnant/PetStoreAutomation.git
+git push -u origin main
+
+================
+git branch -M main
+ ➤ This command renames the current branch to main.
+The -M flag forces the rename (even if a branch named main already exists).
+
+
+It’s often used to rename the default branch from master → main.
+===============================
+git branch -m oldbranch newbranch   # Safe rename with this if there is already branch name exist git will show error for branch already exist 
+========================================
+or push an existing repository from the command line
+git remote add origin https://github.com/SDETAnant/PetStoreAutomation.git
+git branch -M main
+git push -u origin main
+=======================================
+
+Imp 
+Now suppose we have added some new files in project or new changes in code so we need to make sure that it should be part of local and remorse repo
+ Now we don't need to  execute all command 
+$ git init we dont need to execute this is only first time command 
+⇒ Following command only execute when you do some changes or add any  new files
+$ git add -A
+ Then add files from staging area to local repo
+$ git commit -m “commit message” 
+Then push to remorse repo
+$ git push -u origin master 
+==== ================ =====
+⇒ End goal is once these file available in remote repository jenkins should able to execute this file in their environment 
+ 
+
+Commands 
+
+  $  git init        ⇒ this will create local empty repository (One time command when you first 
+                                time committing codes in project )
+  $  git config --global  user.name  “SDETAnant”     — (One time command when you first 
+                                time committing codes in project )
+
+  $  git config --global  user.email “anantdokde99qa”  (One time command when you first 
+                                time committing codes in project )
+
+   $  git status   –         to check the status of tracked and UNTRACKED Files
+   $  git add -A   – to commit all files and folders to staging area 
+   $  git add filename.java  - to commit only particular files 
+   $  git add  *.java  to commit all files which having extension .java
+   $  git status  - to check again status of file if all are added to staging 
+   $ git commit -m “this is my first commit”  - to commit the files from staging area to git 
+                                                                            repository   or local repository 
+   $ git remote add origin  “github.com/SDETAnant/PetStoreAutomation.git”
+               Establishes connection between local and remote repository 
+    $ git push -u origin master    to push code from local to remote repo
+     $  git branch -M main
+         ➤ This command renames the current branch to main.
+    $  git branch -m oldbranch newbranch   # Safe rename with this if there is already branch     name exist git will show error for branch already exist 
+
+========================================
+       https://github.com/SDETAnant/PetStoreAutomation.git
